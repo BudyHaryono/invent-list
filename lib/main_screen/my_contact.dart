@@ -14,8 +14,7 @@ class _MyContactState extends State<MyContact> {
     fontSize: 15,
     color: ColorUtils.blue
   );
-
-  bool isTap = false;
+  List isTap= [false, false, false];
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +39,7 @@ class _MyContactState extends State<MyContact> {
                 "\n\nDeveloped by:"
                 "\nBudy Haryono"
                 "\n\nFor further information or help"
-                "\n You can contact on these platforms :\n",
+                "\n You can contact on these platforms(tap to contact) :\n",
             style: TextStyle(
                 fontFamily: "RobotoMono",
                 fontSize: 20,
@@ -48,56 +47,65 @@ class _MyContactState extends State<MyContact> {
             ),
             textAlign: TextAlign.center,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                "Github\t\t\t\t\t\t:",
-                style: textStyle,
-                textAlign: TextAlign.left,
-              ),
-              isTap ? contactInfo(" BudyHaryono/invent-list", 'https://github.com/BudyHaryono/invent-list') : tapButton(),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  "Github\t\t\t\t\t\t:",
+                  style: textStyle,
+                  textAlign: TextAlign.left,
+                ),
+                isTap[0] ? contactInfo(" BudyHaryono/invent-list", 'https://github.com/BudyHaryono/invent-list') : tapButton(0),
+              ],
+            ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                "E-mail\t\t\t\t\t\t:",
-                style: textStyle,
-                textAlign: TextAlign.left,
-              ),
-              isTap ? contactInfo(" budypro423@gmail.com", 'mailto:budypro423@gmail.com') : tapButton(),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  "E-mail\t\t\t\t\t\t:",
+                  style: textStyle,
+                  textAlign: TextAlign.left,
+                ),
+                isTap[1] ? contactInfo(" budypro423@gmail.com", 'mailto:budypro423@gmail.com') : tapButton(1),
+              ],
+            ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                "Instagram:",
-                style: textStyle,
-                textAlign: TextAlign.left,
-              ),
-              isTap ? contactInfo(' budy.hryno', 'https://www.instagram.com/ariessanndn/') : tapButton(),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  "Instagram:",
+                  style: textStyle,
+                  textAlign: TextAlign.left,
+                ),
+                isTap[2] ? contactInfo(' budy.hryno', 'https://www.instagram.com/budy.hryno') : tapButton(2),
+              ],
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget tapButton() {
+  Widget tapButton(int index) {
     return GestureDetector(
       onTap: () {
         setState(() {
-          isTap = true;
+          isTap[index] = true;
         });
       },
       child: Text(
         "Tap to see",
         style: TextStyle(
           fontFamily: 'RobotoMono',
-          fontSize: 20,
+          fontSize: 15,
           color: ColorUtils.yellow,
         ),
       ),

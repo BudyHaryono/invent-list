@@ -185,6 +185,9 @@ class _InventListState extends State<InventList> {
               gravity: Toast.BOTTOM
           );
           Navigator.pop(context);
+          itemNameController.clear();
+          itemPositionController.clear();
+          itemQuantityController.clear();
         } else {
           _autoValidate = true;
         }
