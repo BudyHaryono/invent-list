@@ -55,8 +55,8 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
-  var _userEmailController = TextEditingController(text: "exp@exp.com");
-  var _userPassController = TextEditingController(text: "123456789");
+  var _userEmailController = TextEditingController();
+  var _userPassController = TextEditingController();
   var _emailFocusNode = FocusNode();
   var _passFocusNode = FocusNode();
   bool _isPassVisible = false;
