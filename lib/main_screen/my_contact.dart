@@ -1,8 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_inventory/styles/style.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MyContact extends StatefulWidget {
   @override
@@ -12,29 +11,11 @@ class MyContact extends StatefulWidget {
 class _MyContactState extends State<MyContact> {
   var textStyle = TextStyle(
     fontFamily: "RobotoMono",
-    fontSize: 20,
+    fontSize: 15,
     color: ColorUtils.blue
   );
 
   bool isTap = false;
-
-  // final tapButton = FlatButton(
-  //   padding: EdgeInsets.zero,
-  //   onPressed: () {
-  //     setState(() {
-  //
-  //     });
-  //   },
-  //   child: Text(
-  //     "Tap to see",
-  //     style: TextStyle(
-  //       fontFamily: 'RobotoMono',
-  //       fontSize: 20,
-  //       color: ColorUtils.yellow,
-  //     ),
-  //   ),
-  // );
-
 
   @override
   Widget build(BuildContext context) {
@@ -59,38 +40,45 @@ class _MyContactState extends State<MyContact> {
                 "\n\nDeveloped by:"
                 "\nBudy Haryono"
                 "\n\nFor further information or help"
-                "\n You can contact on these platforms :",
-            style: textStyle,
+                "\n You can contact on these platforms :\n",
+            style: TextStyle(
+                fontFamily: "RobotoMono",
+                fontSize: 20,
+                color: ColorUtils.blue
+            ),
             textAlign: TextAlign.center,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Text(
                 "Github\t\t\t\t\t\t:",
                 style: textStyle,
+                textAlign: TextAlign.left,
               ),
-              isTap ? tapButton() : contactInfo("github.com/BudyHaryono"),
+              isTap ? contactInfo(" BudyHaryono/invent-list", 'https://github.com/BudyHaryono/invent-list') : tapButton(),
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Text(
                 "E-mail\t\t\t\t\t\t:",
                 style: textStyle,
+                textAlign: TextAlign.left,
               ),
-              tapButton(),
+              isTap ? contactInfo(" budypro423@gmail.com", 'mailto:budypro423@gmail.com') : tapButton(),
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Text(
                 "Instagram:",
                 style: textStyle,
+                textAlign: TextAlign.left,
               ),
-              tapButton(),
+              isTap ? contactInfo(' budy.hryno', 'https://www.instagram.com/ariessanndn/') : tapButton(),
             ],
           ),
         ],
@@ -116,13 +104,18 @@ class _MyContactState extends State<MyContact> {
     );
   }
 
-  Widget contactInfo(String value) {
-    return Text(
-      value,
-      style: TextStyle(
-        fontFamily: 'RobotoMono',
-        fontSize: 20,
-        color: ColorUtils.yellow,
+  Widget contactInfo(String value, String link) {
+    return InkWell(
+      onTap: () => launch(link),
+      child: Text(
+        value,
+        overflow: TextOverflow.ellipsis,
+        softWrap: true,
+        style: TextStyle(
+          fontFamily: 'RobotoMono',
+          fontSize: 15,
+          color: ColorUtils.yellow,
+        ),
       ),
     );
   }
